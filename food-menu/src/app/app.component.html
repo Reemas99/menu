@@ -1,0 +1,26 @@
+<h1> قائمة المطعم</h1>
+
+<!-- خانة البحث -->
+<input type="text" [(ngModel)]="searchTerm" placeholder="ابحث عن الطعام..." class="search-box">
+
+<!-- قائمة الطعام -->
+<h2>🍽️ الأطعمة المتوفرة</h2>
+<div class="menu-grid">
+  <div *ngFor="let item of filteredItems" class="menu-card">
+    <img [src]="item.image" [alt]="item.name" class="menu-image">
+    <h3>{{ item.name }}</h3>
+    <p>السعر: {{ item.price }} ريال</p>
+    <button (click)="addToCart(item)">إضافة إلى السلة</button>
+  </div>
+</div>
+
+<!-- سلة المشتريات -->
+<h2>🛒 سلة المشتريات</h2>
+<ul class="cart-list">
+  <li *ngFor="let item of cart; let i = index" class="cart-item">
+    {{ item.name }} - {{ item.price }} ريال
+    <button (click)="removeFromCart(i)">حذف</button>
+  </li>
+</ul>
+
+<h3>الإجمالي: {{ total }} ريال</h3>
